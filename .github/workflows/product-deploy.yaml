@@ -22,6 +22,8 @@ jobs:
           chmod 700 "$HOME/.ssh"
           echo "${{ secrets.DEPLOY_KEY }}" > "$HOME/.ssh/id_rsa"
           chmod 600 "$HOME/.ssh/id_rsa"
+          echo "${{ secrets.DEPLOY_CONFIG }}" > "$HOME/.ssh/config"
+          chmod 600 "$HOME/.ssh/config"
       - name: Кэширование модулей
         uses: actions/cache@v3
         env:
@@ -40,4 +42,4 @@ jobs:
       - name: Публикация сайта
         run: |
           cd dist
-          rsync --archive --progress --compress --delete . deploy@pulse.fine-solutions.org:/web/sites/pulse/www/
+          rsync --archive --progress --compress --delete . pulse.fine-solutions.org:/web/sites/pulse/www/
