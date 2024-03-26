@@ -24,6 +24,7 @@ jobs:
           chmod 600 "$HOME/.ssh/id_rsa"
           echo "${{ secrets.DEPLOY_CONFIG }}" > "$HOME/.ssh/config"
           chmod 600 "$HOME/.ssh/config"
+          ssh -o StrictHostKeyChecking=no deploy@pulse.fine-solutions.org
       - name: Кэширование модулей
         uses: actions/cache@v3
         env:
